@@ -4,22 +4,26 @@ ngrok http 3000
 
 // В client/src/config/config.ts вставити посилання ngrok
 
-cd client
+cd ./client
 npm install
 
-cd ../server
+cd ./server
 npm install
 
 createdb recipe_db
-# або в psql:
-# CREATE DATABASE recipe_db;
 
+// або в psql:
+CREATE DATABASE recipe_db;
+
+delete .example in server/.env.example
+
+cd ./server
 npx prisma migrate dev --name init
 
-cd ../client
+cd ./client
 npm run build
 
-cd ../server
+cd ./server
 npm run build
 npm run start
 
